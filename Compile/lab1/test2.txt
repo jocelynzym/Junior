@@ -1,0 +1,12 @@
+int *p;
+int *pa[20][30];
+int (**pp);
+int (**ap[20])[30];
+int (*fpa(int i,int *j))[20];
+int * fa(int i)[20][30][40]; //type-error!
+int af[20](int k); // type-error!
+void (*(*paa)[10])(int a);
+void (*afp[10]) (int b);
+void (*afp[10]) (int b)[20];
+int (*(*(*pg())(int x))[20])(int *y);
+int (*p(int * s,int (*t)(int *m, int n, int (*l())[20]),int k[10]))[10][20];

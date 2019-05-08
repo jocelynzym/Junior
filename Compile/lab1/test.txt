@@ -1,0 +1,10 @@
+ ((void(*)( ))buf)( );
+int *p; 
+int *pa[20][30]; 
+int (**pp),*tip; 
+int (**ptr[20])[30]; 
+int *f(int a[2],int b);
+int (*f(int i,int *j))[20],i,j; 
+int a[b]; 
+int *fa(int i)[20]; 
+int af[20](int k);
