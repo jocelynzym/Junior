@@ -15,7 +15,7 @@
 
 【并行计算】Parallel
 
-【计算方法】CM
+【计算方法】calMethod
 
 【人工智能】AI
 
@@ -23,9 +23,11 @@
 
 【数据库】Database
 
+【软件工程】Software
+
 【信息安全导论】infoSec
 
-【软件工程】Software
+
 
 
 
