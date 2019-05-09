@@ -59,7 +59,7 @@ void PSRS(int *array, int n)
     int pivot[num_threads-1];       
     int pivot_array[num_threads][num_threads][50]={0};  
 	
-	cout<<"lestover:"<<leftover<<endl; 
+	cout<<"leftover:"<<leftover<<endl; 
 	
 
     omp_set_num_threads(num_threads);
