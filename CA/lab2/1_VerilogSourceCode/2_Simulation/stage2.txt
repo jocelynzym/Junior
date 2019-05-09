@@ -1,0 +1,75 @@
+
+stage2.om:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00010054 <_start>:
+   10054:	00001517          	auipc	a0,0x1
+   10058:	0080006f          	j	10060 <tag7>
+   1005c:	00110113          	addi	sp,sp,1
+
+00010060 <tag7>:
+   10060:	01400067          	jr	20(zero) # 14 <_start-0x10040>
+   10064:	00110113          	addi	sp,sp,1
+
+00010068 <tag8>:
+   10068:	00110113          	addi	sp,sp,1
+   1006c:	00106093          	ori	ra,zero,1
+   10070:	00108113          	addi	sp,ra,1
+   10074:	40110133          	sub	sp,sp,ra
+   10078:	00110113          	addi	sp,sp,1
+   1007c:	00111193          	slli	gp,sp,0x1
+   10080:	0011d193          	srli	gp,gp,0x1
+   10084:	4011d193          	srai	gp,gp,0x1
+   10088:	00219233          	sll	tp,gp,sp
+   1008c:	00125233          	srl	tp,tp,ra
+   10090:	40125233          	sra	tp,tp,ra
+   10094:	002222b3          	slt	t0,tp,sp
+   10098:	002232b3          	sltu	t0,tp,sp
+   1009c:	0022a313          	slti	t1,t0,2
+   100a0:	0022b313          	sltiu	t1,t0,2
+   100a4:	006143b3          	xor	t2,sp,t1
+   100a8:	00114393          	xori	t2,sp,1
+   100ac:	0020e433          	or	s0,ra,sp
+   100b0:	00140413          	addi	s0,s0,1
+   100b4:	0070f4b3          	and	s1,ra,t2
+   100b8:	0030f493          	andi	s1,ra,3
+   100bc:	00748493          	addi	s1,s1,7
+   100c0:	fffff5b7          	lui	a1,0xfffff
+   100c4:	00002023          	sw	zero,0(zero) # 0 <_start-0x10054>
+   100c8:	00042023          	sw	zero,0(s0)
+   100cc:	0004a023          	sw	zero,0(s1)
+   100d0:	00b00023          	sb	a1,0(zero) # 0 <_start-0x10054>
+   100d4:	00b41023          	sh	a1,0(s0)
+   100d8:	00b4a023          	sw	a1,0(s1)
+   100dc:	00000603          	lb	a2,0(zero) # 0 <_start-0x10054>
+   100e0:	00041683          	lh	a3,0(s0)
+   100e4:	0004a703          	lw	a4,0(s1)
+   100e8:	00044783          	lbu	a5,0(s0)
+   100ec:	00045803          	lhu	a6,0(s0)
+   100f0:	00628463          	beq	t0,t1,100f8 <tag1>
+   100f4:	00110113          	addi	sp,sp,1
+
+000100f8 <tag1>:
+   100f8:	00839463          	bne	t2,s0,10100 <tag2>
+   100fc:	00110113          	addi	sp,sp,1
+
+00010100 <tag2>:
+   10100:	00824463          	blt	tp,s0,10108 <tag3>
+   10104:	00110113          	addi	sp,sp,1
+
+00010108 <tag3>:
+   10108:	00826463          	bltu	tp,s0,10110 <tag4>
+   1010c:	00110113          	addi	sp,sp,1
+
+00010110 <tag4>:
+   10110:	00645463          	ble	t1,s0,10118 <tag5>
+   10114:	00110113          	addi	sp,sp,1
+
+00010118 <tag5>:
+   10118:	00647063          	bleu	t1,s0,10118 <tag5>
+   1011c:	00110113          	addi	sp,sp,1
+
+00010120 <tag6>:
+   10120:	00010113          	mv	sp,sp

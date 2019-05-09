@@ -1,0 +1,12 @@
+
+sample.om:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00010054 <_start>:
+   10054:	21006093          	ori	ra,zero,528
+   10058:	0210e113          	ori	sp,ra,33
+   1005c:	00111193          	slli	gp,sp,0x1
+   10060:	5681f213          	andi	tp,gp,1384
+   10064:	68a06293          	ori	t0,zero,1674
