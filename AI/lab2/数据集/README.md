@@ -7,7 +7,7 @@
 ```c
 //EEG_feature.txt 1216个脑电信号的电极数据
 theta | slow alpha | alpha | beta | gamma
-(1-32)	  (33-64)	(65-96)(97-128)(129-160)	
+(1-32)	  (33-64) (65-96)(97-128)(129-160)	
     
 //subject_video.txt 1216个脑电信号对应的被试和视频编号
 userID | videoID
@@ -45,7 +45,7 @@ valence | arousal
 ```c
 //EEG_feature.txt 533个脑电信号的电极数据
 theta | slow alpha | alpha | beta | gamma
-(1-32)	  (33-64)	(65-96)(97-128)(129-160)	
+(1-32)	  (33-64) (65-96)(97-128)(129-160)	
     
 //subject_video.txt 533个脑电信号对应的被试和视频编号
 userID | videoID
