@@ -18,20 +18,35 @@
 - **非线性kernel的软边界SVM**
 
   ```c
-  //SVM_DEAP
+  //SVM_DEAP.py
   对DEAP数据集的valence_arousal_label进行分类
-  //SVM_HCI
+  //SVM_HCI.py
   对MAHNOB-HCI数据集的valence_arousal_label进行分类
   ```
 
 - **带有 drop-out 的 MLP** 
 
+  ```
+  
+  ```
+
 - **用带拉普拉斯修正的Naïve Bayes**
 
-- **KNN分类器**
+  ```c
+  //Bayes_DEAP.py
+  对DEAP数据集的valence_arousal_label,subject id进行分类
+  //Bayes_HCI.py
+  对MAHNOB-HCI数据集的valence_arousal_label,subject id,emotion进行分类
+  ```
 
+- **KNN算法**
 
-
+  ```C
+  //KNN_DEAP.py
+  对DEAP数据集的valence_arousal_label进行分类
+  //KNN_HCI.py
+  对MAHNOB-HCI数据集的valence_arousal_label,emotion进行分类
+  ```
 
 
 ### 2.2实验内容
@@ -119,102 +134,217 @@
 
 
 
-
 #### 三.带有 drop-out 的 MLP 
 
-- 样本说明
+实验任务: 对 2 个数据集的 valence_arousal_label 进行分类。对2个数据集的被试人员（subject id）进行分类。对MAHNOBHCI 数据集的情感标签进行分类。
 
-  | 编号 | 数据预处理 | 参数说明 |
-  | ---- | ---------- | -------- |
-  | 1    |            |          |
-  | 2    |            |          |
-  | 3    |            |          |
-  | 4    |            |          |
-  | 5    |            |          |
-  | 6    |            |          |
+**1.数据集DEAP**
 
-- 对 2 个数据集的 valence_arousal_label 进行分类
+- **样本说明及结果**
 
-- 对2个数据集的被试人员（subject id）进行分类
+  | 编号 | 数据处理说明                      | 参数说明 | valence准确率 | arousal准确率 |
+  | ---- | --------------------------------- | -------- | ------------- | ------------- |
+  | 1    | 使用所有属性                      | C=1      | 0.93          | 0.90          |
+  | 2    | 使用所有属性                      | C=1E-1   | 0.82          | 0.66          |
+  | 3    | 使用所有属性                      | C=1E-4   | 0.550         | 0.58          |
+  | 4    | 删去subject_video.txt中的两个属性 | C=1      | 0.75          | 0.77          |
+  | 5    | 删去subject_video.txt中的两个属性 | C=1E-1   | 0.61          | 0.59          |
+  | 6    | 删去subject_video.txt中的两个属性 | C=1E-4   | 0.56          | 0.58          |
 
-- 对MAHNOBHCI 数据集的情感标签进行分类
+- **实现说明**
 
-- 使用
+  -使用sklearn工具包的SVM
 
-- **分类结果**
+  -实现非线性 kernel 软边界 SVM的方法是, 将kernel参数设置为rbf, 并且设定软边界系数C
 
-  | 预处理编号 | 准确率P | 召回率R | F值  |
-  | ---------- | ------- | ------- | ---- |
-  | 1          |         |         |      |
-  | 2          |         |         |      |
-  | 3          |         |         |      |
+  ```python
+  from sklearn.svm import SVC
+  model = SVC(kernel='rbf', C=1E4)
+  model.fit(train_x, train_y)
+  ```
 
-- **分析结果**
+  -评测: 使用sklearn自带评测工具包, 以5次交叉验证的平均准确率为评价指标
+
+  ```python
+  from sklearn.metrics import precision_score
+  P = precision_score(test_y, pred_y)
+  ```
+
+**2.数据集MAHNOB-HCI**
+
+- **样本说明及结果**
+
+  | 编号 | 数据处理说明                 | 参数说明 | valence准确率 | arousal准确率 |
+  | ---- | ---------------------------- | -------- | ------------- | ------------- |
+  | 1    | 使用所有属性                 | C=1      | 0.97          | 0.94          |
+  | 2    | 使用所有属性                 | C=1E-1   | 0.86          | 0.88          |
+  | 3    | 使用所有属性                 | C=1E-4   | 0.58          | 0             |
+  | 4    | 删去EEG_emotion_category属性 | C=1      | 0.96          | 0.77          |
+  | 5    | 删去EEG_emotion_category属性 | C=1E-1   | 0.80          | 0.59          |
+  | 6    | 删去EEG_emotion_category属性 | C=1E-4   | 0.58          | 0.58          |
+
+- **实现说明**
+
+  -与DEAP数据集的不同之处在于样本数量和向量维度，稍作更改即可
+
+**3.分析结果**
+
+- 如果模型的参数太多，而训练样本又太少的话，这样训练出来的模型很容易产生过拟合现象。Dropout按照一定比例v，随机地让一部分隐层节点失效，是一个非常有效的神经网络模型平均方法，通过训练大量的不同的网络，来平均预测概率。不同的模型在不同的训练集上训练（每个批次的训练数据都是随机选择），最后在每个模型用相同的权重来“融合”
+- 
+- 
+- 
 
 
 
 
 
-#### 四.用带拉普拉斯修正的Naïve Bayes
+#### 四.不同分布的的Naïve Bayes
 
-- 样本说明
+实验任务: 对 2 个数据集的 valence_arousal_label 进行分类。对2个数据集的被试人员（subject id）进行分类。对MAHNOBHCI 数据集的情感标签进行分类。
 
-  | 编号 | 数据预处理 | 参数说明 |
-  | ---- | ---------- | -------- |
-  | 1    |            |          |
-  | 2    |            |          |
-  | 3    |            |          |
-  | 4    |            |          |
-  | 5    |            |          |
-  | 6    |            |          |
+**1.实现说明**
 
-- 对2个数据集的被试人员（subject id）进行分类
+- 调用sklearn工具包实现。假定每一类中的每个属性有一个含参分布, 分别测试高斯分布,多项式分布。对应sklearn工具包的GaussianNB算法，MultinomialNB算法。
 
-- 对MAHNOBHCI 数据集的情感标签进行分类
+- 参数说明: 
 
-- 使用
+  -高斯分布: `priors`设置先验概率， 这个值默认为None
 
-- **分类结果**
+  -多项式分布: `alpha`设置拉普拉斯修正数值，`fit_prior`表示是否要考虑先验概率,  `class_prior`表示在需要考虑先验概率的情况下，人为设置先验概率
 
-  | 预处理编号 | 准确率P | 召回率R | F值  |
-  | ---------- | ------- | ------- | ---- |
-  | 1          |         |         |      |
-  | 2          |         |         |      |
-  | 3          |         |         |      |
+**2.关键代码**
 
-- **分析结果**
+- 算法
 
+  ```python
+  #高斯分布
+  from sklearn.naive_bayes import GaussianNB
+  model = GaussianNB(priors=None)
+  model.fit(train_x, train_y)
+  #多项式分布
+  from sklearn.naive_bayes import MultinomialNB
+  model = MultinomialNB(alpha=1.0, fit_prior=True, class_prior=None)
+  model.fit(train_x, train_y)
+  ```
+
+- 评测
+
+  ```python
+  P = model.score(test_x,test_y)
+  ```
+
+**3.数据集DEAP**
+
+- **样本说明及结果**
+
+  X向量仅选用`EEG_feature.txt`中的属性
+
+  | 编号 | 数据处理说明 | 参数说明    | 分类对象   | 准确率 |
+  | ---- | ------------ | ----------- | ---------- | ------ |
+  | 1    | 高斯分布     | priors=None | valence    | 0.65   |
+  | 2    | 多项式分布   | alpha=1.0   | valence    | 0.63   |
+  | 3    | 多项式分布   | alpha=0.9   | valence    | 0.63   |
+  | 4    | 高斯分布     | priors=None | arousal    | 0.61   |
+  | 5    | 多项式分布   | alpha=1.0   | arousal    | 0.64   |
+  | 6    | 多项式分布   | alpha=0.9   | arousal    | 0.60   |
+  | 7    | 高斯分布     | priors=None | subject id | 1      |
+  | 8    | 多项式分布   | alpha=1.0   | subject id | 0.98   |
+  | 9    | 多项式分布   | alpha=0.9   | subject id | 0.98   |
+
+**4.数据集MAHNOB-HCI**
+
+- **样本说明及结果**
+
+  | 编号 | 数据处理说明 | 参数说明    | 分类对象   | 准确率 |
+  | ---- | ------------ | ----------- | ---------- | ------ |
+  | 1    | 高斯分布     | priors=None | valence    | 0.63   |
+  | 2    | 多项式分布   | alpha=1.0   | valence    | 0.64   |
+  | 3    | 多项式分布   | alpha=0.9   | valence    | 0.64   |
+  | 4    | 高斯分布     | priors=None | arousal    | 0.68   |
+  | 5    | 多项式分布   | alpha=1.0   | arousal    | 0.58   |
+  | 6    | 多项式分布   | alpha=0.9   | arousal    | 0.58   |
+  | 7    | 高斯分布     | priors=None | subject id | 1      |
+  | 8    | 多项式分布   | alpha=1.0   | subject id | 0.96   |
+  | 9    | 多项式分布   | alpha=0.9   | subject id | 0.96   |
+  | 10   | 高斯分布     | priors=None | emotion    | 0.51   |
+  | 11   | 多项式分布   | alpha=1.0   | emotion    | 0.35   |
+  | 12   | 多项式分布   | alpha=0.9   | emotion    | 0.35   |
+
+**5.分析结果**
+
+- 实验准确率不高的原因在于，朴素贝叶斯模型假设属性之间相互独立，这个假设在实际应用中往往是不成立的，在属性个数比较多或者属性之间相关性较大时，分类效果不好。降维可以取得较好效果。
+
+- 如果样本特征的分布大部分是连续值，使用GaussianNB会比较好。
+  如果样本特征的分布大部分是多元离散值，使用MultinomialNB比较合适。
+
+- 参数`alpha`的作用是设置拉普拉斯修正（平滑）的数值。如果发现拟合的不好，需要调优时，可以选择稍大于1或者稍小于1的数。
 
 
 
 
 #### 五.KNN分类器
 
+实验任务: 对 2 个数据集的 valence_arousal_label 进行分类。对MAHNOBHCI 数据集的情感标签进行分类。
 
-- 样本说明
+**1.实现说明**
 
-  | 编号 | 数据预处理 | 参数说明 |
-  | ---- | ---------- | -------- |
-  | 1    |            |          |
-  | 2    |            |          |
-  | 3    |            |          |
-  | 4    |            |          |
-  | 5    |            |          |
-  | 6    |            |          |
+- 调用sklearn工具包实现KNN
 
-- 对 2 个数据集 的 valence_arousal_label 进行分类
+- 参数说明: 
 
-- 使用
+  `n_neighbors`指定邻居数
 
-- **分类结果**
+**2.关键代码**
 
-  | 预处理编号 | 准确率P | 召回率R | F值  |
-  | ---------- | ------- | ------- | ---- |
-  | 1          |         |         |      |
-  | 2          |         |         |      |
-  | 3          |         |         |      |
+- 算法
 
-- **分析结果**
+  ```python
+  from sklearn.neighbors import KNeighborsClassifier
+  model = KNeighborsClassifier(n_neighbors=5) 
+  model.fit(train_x, train_y)
+  ```
+
+- 评测
+
+  ```python
+  score=knn.score(test_x,test_y,sample_weight=None)
+  ```
+
+**3.数据集DEAP**
+
+- **样本说明及结果**
+
+  | 编号 | 参数说明       | 分类对象 | 准确率 |
+  | ---- | -------------- | -------- | ------ |
+  | 1    | n_neighbors=5  | valence  | 1      |
+  | 2    | n_neighbors=10 | valence  | 0.77   |
+  | 3    | n_neighbors=30 | valence  | 0.65   |
+  | 4    | n_neighbors=5  | arousal  | 1      |
+  | 5    | n_neighbors=10 | arousal  | 0.79   |
+  | 6    | n_neighbors=30 | arousal  | 0.71   |
+
+**4.数据集MAHNOB-HCI**
+
+- **样本说明及结果**
+
+  | 编号 | 参数说明       | 分类对象 | 准确率 |
+  | ---- | -------------- | -------- | ------ |
+  | 1    | n_neighbors=5  | valence  | 1      |
+  | 2    | n_neighbors=10 | valence  | 0.75   |
+  | 3    | n_neighbors=30 | valence  | 0.67   |
+  | 4    | n_neighbors=5  | arousal  | 1      |
+  | 5    | n_neighbors=10 | arousal  | 0.79   |
+  | 6    | n_neighbors=30 | arousal  | 0.73   |
+  | 7    | n_neighbors=5  | emotion  | 1      |
+  | 8    | n_neighbors=10 | emotion  | 0.58   |
+  | 9    | n_neighbors=30 | emotion  | 0.39   |
+
+**5.分析结果**
+
+- 实验数据划分非常均匀, 故当邻居数`n_neighbors`选取适当值时，可以取得很高的精度
+- 当邻居数`n_neighbors`过大，这个时候与输入实例较远的（不相似）训练实例也会对预测起作用，使预测产生错误。
+- 当邻居数`n_neighbors`过小，这个时候与输入实例比较近（相似的）的训练实例才会对预测结果起作用。缺点就是预测结果对近邻的实例点非常敏感，假如邻近的点恰好是噪音的话，预测就会出错。K值得减小意味着整体模型变复杂，容易发生过拟合。
+- 从实验结果来看，其他条件相同时，对二分类的预测比对多分类准确
 
 
 
@@ -249,8 +379,6 @@
   ```
   cat aa.txt | tr -s '[:blank:]' ',' > bb.csv
   ```
-
-
 
 
 
