@@ -26,7 +26,10 @@
 
 - **带有 drop-out 的 MLP** 
 
-  ```
+  ```c
+  //MLP_DEAP.py
+  
+  //MLP_HCI.py
   
   ```
 
@@ -138,63 +141,77 @@
 
 实验任务: 对 2 个数据集的 valence_arousal_label 进行分类。对2个数据集的被试人员（subject id）进行分类。对MAHNOBHCI 数据集的情感标签进行分类。
 
-**1.数据集DEAP**
+**1.实现说明**
 
-- **样本说明及结果**
+- 使用tensorflow实现。自行定义神经网络的结构、权重、激活函数、dropout比率
+- 激活函数使用ReLU
+- 在隐含层使用Dropout
+- 使用损失函数最小化的优化算法Adagrad
 
-  | 编号 | 数据处理说明                      | 参数说明 | valence准确率 | arousal准确率 |
-  | ---- | --------------------------------- | -------- | ------------- | ------------- |
-  | 1    | 使用所有属性                      | C=1      | 0.93          | 0.90          |
-  | 2    | 使用所有属性                      | C=1E-1   | 0.82          | 0.66          |
-  | 3    | 使用所有属性                      | C=1E-4   | 0.550         | 0.58          |
-  | 4    | 删去subject_video.txt中的两个属性 | C=1      | 0.75          | 0.77          |
-  | 5    | 删去subject_video.txt中的两个属性 | C=1E-1   | 0.61          | 0.59          |
-  | 6    | 删去subject_video.txt中的两个属性 | C=1E-4   | 0.56          | 0.58          |
+**2.关键代码**
 
-- **实现说明**
-
-  -使用sklearn工具包的SVM
-
-  -实现非线性 kernel 软边界 SVM的方法是, 将kernel参数设置为rbf, 并且设定软边界系数C
+- 算法
 
   ```python
-  from sklearn.svm import SVC
-  model = SVC(kernel='rbf', C=1E4)
+  #高斯分布
+  from sklearn.naive_bayes import GaussianNB
+  model = GaussianNB(priors=None)
+  model.fit(train_x, train_y)
+  #多项式分布
+  from sklearn.naive_bayes import MultinomialNB
+  model = MultinomialNB(alpha=1.0, fit_prior=True, class_prior=None)
   model.fit(train_x, train_y)
   ```
 
-  -评测: 使用sklearn自带评测工具包, 以5次交叉验证的平均准确率为评价指标
+- 评测
 
   ```python
-  from sklearn.metrics import precision_score
-  P = precision_score(test_y, pred_y)
+  P = model.score(test_x,test_y)
   ```
 
-**2.数据集MAHNOB-HCI**
+**3.数据集DEAP**
 
 - **样本说明及结果**
 
-  | 编号 | 数据处理说明                 | 参数说明 | valence准确率 | arousal准确率 |
-  | ---- | ---------------------------- | -------- | ------------- | ------------- |
-  | 1    | 使用所有属性                 | C=1      | 0.97          | 0.94          |
-  | 2    | 使用所有属性                 | C=1E-1   | 0.86          | 0.88          |
-  | 3    | 使用所有属性                 | C=1E-4   | 0.58          | 0             |
-  | 4    | 删去EEG_emotion_category属性 | C=1      | 0.96          | 0.77          |
-  | 5    | 删去EEG_emotion_category属性 | C=1E-1   | 0.80          | 0.59          |
-  | 6    | 删去EEG_emotion_category属性 | C=1E-4   | 0.58          | 0.58          |
+  X向量仅选用`EEG_feature.txt`中的属性
 
-- **实现说明**
+  | 编号 | 数据处理说明 | 参数说明    | 分类对象   | 准确率 |
+  | ---- | ------------ | ----------- | ---------- | ------ |
+  | 1    | 高斯分布     | priors=None | valence    | 0.65   |
+  | 2    | 多项式分布   | alpha=1.0   | valence    | 0.63   |
+  | 3    | 多项式分布   | alpha=0.9   | valence    | 0.63   |
+  | 4    | 高斯分布     | priors=None | arousal    | 0.61   |
+  | 5    | 多项式分布   | alpha=1.0   | arousal    | 0.64   |
+  | 6    | 多项式分布   | alpha=0.9   | arousal    | 0.60   |
+  | 7    | 高斯分布     | priors=None | subject id | 1      |
+  | 8    | 多项式分布   | alpha=1.0   | subject id | 0.98   |
+  | 9    | 多项式分布   | alpha=0.9   | subject id | 0.98   |
 
-  -与DEAP数据集的不同之处在于样本数量和向量维度，稍作更改即可
+**4.数据集MAHNOB-HCI**
 
-**3.分析结果**
+- **样本说明及结果**
 
-- 如果模型的参数太多，而训练样本又太少的话，这样训练出来的模型很容易产生过拟合现象。Dropout按照一定比例v，随机地让一部分隐层节点失效，是一个非常有效的神经网络模型平均方法，通过训练大量的不同的网络，来平均预测概率。不同的模型在不同的训练集上训练（每个批次的训练数据都是随机选择），最后在每个模型用相同的权重来“融合”
-- 
-- 
-- 
+  | 编号 | 数据处理说明 | 参数说明    | 分类对象   | 准确率 |
+  | ---- | ------------ | ----------- | ---------- | ------ |
+  | 1    | 高斯分布     | priors=None | valence    | 0.63   |
+  | 2    | 多项式分布   | alpha=1.0   | valence    | 0.64   |
+  | 3    | 多项式分布   | alpha=0.9   | valence    | 0.64   |
+  | 4    | 高斯分布     | priors=None | arousal    | 0.68   |
+  | 5    | 多项式分布   | alpha=1.0   | arousal    | 0.58   |
+  | 6    | 多项式分布   | alpha=0.9   | arousal    | 0.58   |
+  | 7    | 高斯分布     | priors=None | subject id | 1      |
+  | 8    | 多项式分布   | alpha=1.0   | subject id | 0.96   |
+  | 9    | 多项式分布   | alpha=0.9   | subject id | 0.96   |
+  | 10   | 高斯分布     | priors=None | emotion    | 0.51   |
+  | 11   | 多项式分布   | alpha=1.0   | emotion    | 0.35   |
+  | 12   | 多项式分布   | alpha=0.9   | emotion    | 0.35   |
 
+**5.分析结果**
 
+- 实验准确率不高的原因在于，朴素贝叶斯模型假设属性之间相互独立，这个假设在实际应用中往往是不成立的，在属性个数比较多或者属性之间相关性较大时，分类效果不好。降维可以取得较好效果。
+- 如果样本特征的分布大部分是连续值，使用GaussianNB会比较好。
+  如果样本特征的分布大部分是多元离散值，使用MultinomialNB比较合适。
+- 参数`alpha`的作用是设置拉普拉斯修正（平滑）的数值。如果发现拟合的不好，需要调优时，可以选择稍大于1或者稍小于1的数。
 
 
 

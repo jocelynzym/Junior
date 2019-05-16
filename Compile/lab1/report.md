@@ -1,4 +1,4 @@
-## lab1 C语言声明分析器(修改版)
+## lab1 C语言声明分析器
 
 
 
@@ -395,11 +395,11 @@ int af[20](int k);
 
 **运行结果**
 
-![](E:\course\大三上\编译原理\lab\lab1\pic\1-2.PNG)
+![](G:\course\大三上\编译原理\lab\lab1\pic\1-2.PNG)
 
-![](E:\course\大三上\编译原理\lab\lab1\pic\1-3.PNG)
+![](G:\course\大三上\编译原理\lab\lab1\pic\1-3.PNG)
 
-![](E:\course\大三上\编译原理\lab\lab1\pic\1-6.PNG)
+![](G:\course\大三上\编译原理\lab\lab1\pic\1-6.PNG)
 
 
 
