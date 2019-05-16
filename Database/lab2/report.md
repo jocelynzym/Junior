@@ -79,11 +79,11 @@
 
 **3.设计概念模型CDM**
 
-![概念模型](https://github.com/jocelynzym/Junior/tree/master/Database/lab2/pic/1.jpg)
+![概念模型](https://github.com/jocelynzym/Junior/tree/master/Database/lab2/pic/1.png)
 
 **4.概念模型转换为物理模型**
 
-​	![物理模型](https://github.com/jocelynzym/Junior/tree/master/Database/lab2/pic/2.jpg)
+​	![物理模型](https://github.com/jocelynzym/Junior/tree/master/Database/lab2/pic/2.png)
 
 **5.物理模型导出sql脚本**
 
