@@ -113,7 +113,7 @@ CUDA（Compute Unified Device Architecture）是显卡厂商NVIDIA推出的运�
 
 - 下图展示GPU设备内存与各流式多处理器片上内存结构
 
-  <img src="G:\github\Junior\Parallel\lab3\pic\1.png" style="zoom:50%">
+  <img src="https://github.com/jocelynzym/Junior/blob/master/Parallel/lab3/pic/1.png" style="zoom:50%">
 
 **4.线程组织结构**
 
