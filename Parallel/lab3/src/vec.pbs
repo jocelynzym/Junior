@@ -1,0 +1,19 @@
+ #PBS -N cudatestjob
+  #PBS -o /ghome/test001/joce/$PBS_JOBID.out
+  #PBS -e /ghome/test001/joce/$PBS_JOBID.err
+  #PBS -l nodes=G142:gpus=1
+  #PBS -r y
+  #PBS -q batch
+  cd $PBS_O_WORKDIR
+  echo Time is `date`
+  echo Directory is $PWD
+  echo This job runs on following nodes:
+  echo -n "Node:"
+  cat $PBS_NODEFILE
+  echo -n "Gpus:"
+  cat $PBS_GPUFILE
+  echo "CUDA_VISIBLE_DEVICES:"$CUDA_VISIBLE_DEVICES
+  startdocker -c "nvcc -o /ghome/test001/joce/vec /ghome/test001/joce/vec.cu"  bit:5000/deepo
+  startdocker -c "/ghome/test001/joce/vec"  bit:5000/deepo
+
+
