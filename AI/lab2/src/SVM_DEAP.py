@@ -4,6 +4,7 @@ from sklearn.model_selection import KFold
 from sklearn.metrics import precision_score, recall_score
 from sklearn.metrics import f1_score
 from sklearn.svm import SVC
+from sklearn.metrics import roc_auc_score
 
 #读csv文件,创建实验数据
 dataset1 = pd.read_csv('./DEAP/sample_1.csv',header=None)
@@ -18,14 +19,15 @@ col4 = dataset4.columns.values.tolist()
 col5 = dataset5.columns.values.tolist()
 #将csv文件数据以numpy矩阵形式存储
 sample_1 = np.array(dataset1[col1])
-sample_2 = np.array(dataset1[col2])
-sample_3 = np.array(dataset1[col3])
-sample_4 = np.array(dataset1[col4])
-sample_5 = np.array(dataset1[col5])
+sample_2 = np.array(dataset2[col2])
+sample_3 = np.array(dataset3[col3])
+sample_4 = np.array(dataset4[col4])
+sample_5 = np.array(dataset5[col5])
 
 P=0
 R=0
 F=0
+AUC=0
 
 #五折交叉检验
 for i in range(1,6):
@@ -102,20 +104,21 @@ for i in range(1,6):
     P = P + precision_score(test_y, pred_y)
     R = R + recall_score(test_y, pred_y)
     F = F + f1_score(test_y, pred_y)
+    AUC = AUC + roc_auc_score(test_y, pred_y)
     # 精准率与召回率
     print("PP:", precision_score(test_y, pred_y))
     print("RR:", recall_score(test_y, pred_y))
     # f1 score
     print("FF:", f1_score(test_y, pred_y))
-
-
+    # 计算auc，一般针对两类分类问题
+    print("AUC:",roc_auc_score(test_y, pred_y))
 
 # 平均精准率与召回率
 print("P:",P/5)
 print("R:",R/5)
 # f1 score
 print("F:",R/5)
-
+print("AUC:",AUC/5)
 
 
 

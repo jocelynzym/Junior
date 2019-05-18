@@ -17,10 +17,10 @@ col3 = dataset3.columns.values.tolist()
 col4 = dataset4.columns.values.tolist()
 col5 = dataset5.columns.values.tolist()
 sample_1 = np.array(dataset1[col1])
-sample_2 = np.array(dataset1[col2])
-sample_3 = np.array(dataset1[col3])
-sample_4 = np.array(dataset1[col4])
-sample_5 = np.array(dataset1[col5])
+sample_2 = np.array(dataset2[col2])
+sample_3 = np.array(dataset3[col3])
+sample_4 = np.array(dataset4[col4])
+sample_5 = np.array(dataset5[col5])
 
 
 P=0

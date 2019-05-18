@@ -16,8 +16,9 @@ y_raw = np.array(dataset2[col2])
 y_1,y_2 = np.split(y_raw,[1],axis=1)
 z_raw = np.array(dataset3[col3])
 z_1,z_2 = np.split(z_raw,[1],axis=1)
-e_ = np.array(dataset1[col4])
+e_ = np.array(dataset4[col4])
 
+print(e_)
 #将3个文件按样本序号合并
 x_y = np.concatenate([z_raw,e_ ,x_,y_raw],axis=1)
 print("shape",x_y[0])

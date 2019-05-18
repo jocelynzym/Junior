@@ -12,8 +12,8 @@
 #define BLOCKSIZE 16
 
 __global__ void multiply(const int *a, const int *b, int *c, int n) {
-    int row = blockIdx.x * blockDim.x + threadIdx.x;
-    int col = blockIdx.y * blockDim.y + threadIdx.y;
+    int row = blockIdx.x * blockDim.x + threadIdx.x; //m*16+x
+    int col = blockIdx.y * blockDim.y + threadIdx.y; //n*16+y
 
     int k;
     int sum = 0;
@@ -22,13 +22,13 @@ __global__ void multiply(const int *a, const int *b, int *c, int n) {
         for (k = 0; k < n; k++) {
             sum += a[row * n + k] * b[k * n + col];
         }
-
         c[row * n + col] = sum;
     }
+	
 }
 
 int main(int argc, char **argv) {
-    int n = 512;
+    int n = 10;
     int i, j, k;
     timeval start, finish;
 

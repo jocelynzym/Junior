@@ -22,7 +22,7 @@ __global__ void add(const int *a, const int *b, int *c, int n) {
 
 
 int main(int argc, char **argv) {
-    int n = 512;
+    int n = 100000;
     int i;
     timeval start, finish;
 
@@ -36,7 +36,7 @@ int main(int argc, char **argv) {
     int *host_c = (int *)malloc(sizeof(int) * n);
     int *host_d = (int *)malloc(sizeof(int) * n);
 	
-	//数据初始匿
+	
     srand(time(NULL));
     for (i = 0; i < n; i++) {
         host_a[i] = RANDOM(MAX);
@@ -60,7 +60,7 @@ int main(int argc, char **argv) {
 	//主机向设备拷贝数捿
     cudaMemcpy(device_a, host_a, sizeof(int) * n, cudaMemcpyHostToDevice);
     cudaMemcpy(device_b, host_b, sizeof(int) * n, cudaMemcpyHostToDevice);
-	
+	 
     int gridsize = (int)ceil(sqrt(ceil(n / (BLOCKSIZE * BLOCKSIZE))));
 
     dim3 dimBlock(BLOCKSIZE, BLOCKSIZE, 1);//设置参数
