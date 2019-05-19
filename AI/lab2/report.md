@@ -214,10 +214,10 @@
   | 10   | 3          | 0.5         | subject id | 0.67   |
   | 11   | 4          | 0.2         | subject id | 0.66   |
   | 12   | 4          | 0.5         | subject id | 0.23   |
-  | 13   | 4          | 0.2         | emotion    | 0.52   |
-  | 14   | 4          | 0.5         | emotion    | 0.45   |
-  | 15   | 5          | 0.2         | emotion    | 0.47   |
-  | 16   | 5          | 0.5         | emotion    | 0.42   |
+  | 13   | 4          | 0.2         | emotion    | 0.50   |
+  | 14   | 4          | 0.5         | emotion    | 0.42   |
+  | 15   | 5          | 0.2         | emotion    | 0.43   |
+  | 16   | 5          | 0.5         | emotion    | 0.38   |
 
 **5.分析结果**
 
@@ -232,8 +232,6 @@
 - 当为n分类且n较大时，如果过度dropout会损失特征，使准确率非常低
 
 - 如果模型在训练集上表现很差，说明欠拟合。这时可以增加迭代轮数nb_epoch值。实验中考虑训练时间问题，nb_epoch取的较小。故部分测试例存在欠拟合问题，可通过增大迭代次数得到较大改善
-
-
 
 
 
@@ -286,7 +284,7 @@
   | 4    | 高斯分布     | priors=None | arousal    | 0.61   |
   | 5    | 多项式分布   | alpha=1.0   | arousal    | 0.64   |
   | 6    | 多项式分布   | alpha=0.9   | arousal    | 0.60   |
-  | 7    | 高斯分布     | priors=None | subject id | 1      |
+  | 7    | 高斯分布     | priors=None | subject id | 0.98   |
   | 8    | 多项式分布   | alpha=1.0   | subject id | 0.98   |
   | 9    | 多项式分布   | alpha=0.9   | subject id | 0.98   |
 
@@ -302,7 +300,7 @@
   | 4    | 高斯分布     | priors=None | arousal    | 0.68   |
   | 5    | 多项式分布   | alpha=1.0   | arousal    | 0.58   |
   | 6    | 多项式分布   | alpha=0.9   | arousal    | 0.58   |
-  | 7    | 高斯分布     | priors=None | subject id | 1      |
+  | 7    | 高斯分布     | priors=None | subject id | 0.98   |
   | 8    | 多项式分布   | alpha=1.0   | subject id | 0.96   |
   | 9    | 多项式分布   | alpha=0.9   | subject id | 0.96   |
   | 10   | 高斯分布     | priors=None | emotion    | 0.51   |
@@ -355,10 +353,10 @@
 
   | 编号 | 参数说明       | 分类对象 | 准确率 |
   | ---- | -------------- | -------- | ------ |
-  | 1    | n_neighbors=5  | valence  | 1      |
+  | 1    | n_neighbors=5  | valence  | 0.95   |
   | 2    | n_neighbors=10 | valence  | 0.77   |
   | 3    | n_neighbors=30 | valence  | 0.65   |
-  | 4    | n_neighbors=5  | arousal  | 1      |
+  | 4    | n_neighbors=5  | arousal  | 0.96   |
   | 5    | n_neighbors=10 | arousal  | 0.79   |
   | 6    | n_neighbors=30 | arousal  | 0.71   |
 
@@ -368,13 +366,13 @@
 
   | 编号 | 参数说明       | 分类对象 | 准确率 |
   | ---- | -------------- | -------- | ------ |
-  | 1    | n_neighbors=5  | valence  | 1      |
+  | 1    | n_neighbors=5  | valence  | 0.94   |
   | 2    | n_neighbors=10 | valence  | 0.75   |
   | 3    | n_neighbors=30 | valence  | 0.67   |
-  | 4    | n_neighbors=5  | arousal  | 1      |
+  | 4    | n_neighbors=5  | arousal  | 0.95   |
   | 5    | n_neighbors=10 | arousal  | 0.79   |
   | 6    | n_neighbors=30 | arousal  | 0.73   |
-  | 7    | n_neighbors=5  | emotion  | 1      |
+  | 7    | n_neighbors=5  | emotion  | 0.94   |
   | 8    | n_neighbors=10 | emotion  | 0.58   |
   | 9    | n_neighbors=30 | emotion  | 0.39   |
 
@@ -384,8 +382,6 @@
 - 当邻居数`n_neighbors`过大，这个时候与输入实例较远的（不相似）训练实例也会对预测起作用，使预测产生错误。
 - 当邻居数`n_neighbors`过小，这个时候与输入实例比较近（相似的）的训练实例才会对预测结果起作用。缺点就是预测结果对近邻的实例点非常敏感，假如邻近的点恰好是噪音的话，预测就会出错。K值得减小意味着整体模型变复杂，容易发生过拟合。
 - 从实验结果来看，其他条件相同时，对二分类的预测比对多分类准确
-
-
 
 
 
