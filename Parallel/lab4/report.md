@@ -58,7 +58,7 @@
   $ java -version
   ```
 
-  <img src="G:\github\Junior\Parallel\lab4\pic\5.jpg" style="zoom:100%">
+  <img src="https://github.com/jocelynzym/Junior/blob/master/Parallel/lab4/pic/5.jpg" style="zoom:100%">
 
 **2.验证并安装ssh**
 
@@ -73,7 +73,7 @@
   $ sudo apt-get install openssh-server
   ```
 
-  <img src="G:\github\Junior\Parallel\lab4\pic\6.jpg" style="zoom:100%">
+  <img src="https://github.com/jocelynzym/Junior/blob/master/Parallel/lab4/pic/6.jpg" style="zoom:100%">
 
 - 检测sshd服务是否启动
 
@@ -83,7 +83,7 @@
   $ sudo /etc/init.d/ssh start
   ```
 
-  <img src="G:\github\Junior\Parallel\lab4\pic\7.jpg" style="zoom:100%">
+  <img src="https://github.com/jocelynzym/Junior/blob/master/Parallel/lab4/pic/7.jpg" style="zoom:100%">
 
 **3.生成ssh秘钥对**
 
@@ -111,7 +111,7 @@
 
   如果配置成功，则不需要密码就可以通过ssh进入localhost
 
-  <img src="G:\github\Junior\Parallel\lab4\pic\8.jpg" style="zoom:100%">
+  <img src="https://github.com/jocelynzym/Junior/blob/master/Parallel/lab4/pic/8.jpg" style="zoom:100%">
 
 **4.安装hadoop**
 
@@ -205,7 +205,7 @@
 $ ~/hadoop/hadoop-1.0.4/bin/hadoop namenode -format
 ```
 
-<img src="G:\github\Junior\Parallel\lab4\pic\1.jpg" style="zoom:50%">
+<img src="https://github.com/jocelynzym/Junior/blob/master/Parallel/lab4/pic/1.jpg" style="zoom:50%">
 
 **8.启动hadoop**
 
@@ -213,7 +213,7 @@ $ ~/hadoop/hadoop-1.0.4/bin/hadoop namenode -format
 $ ~/hadoop/hadoop-1.0.4/bin/start-all.sh
 ```
 
-<img src="G:\github\Junior\Parallel\lab4\pic\2.jpg" style="zoom:50%">
+<img src="https://github.com/jocelynzym/Junior/blob/master/Parallel/lab4/pic/2.jpg" style="zoom:50%">
 
 **9.检测hadoop是否成功启动**
 
@@ -221,7 +221,7 @@ $ ~/hadoop/hadoop-1.0.4/bin/start-all.sh
 $ jps
 ```
 
-<img src="G:\github\Junior\Parallel\lab4\pic\3.jpg" style="zoom:100%">
+<img src="https://github.com/jocelynzym/Junior/blob/master/Parallel/lab4/pic/3.jpg" style="zoom:100%">
 
 **10.在HDFS中添加文件和目录**
 
@@ -256,7 +256,8 @@ $ jps
   $ hadoop fs -lsr /
   ```
 
-  <img src="G:\github\Junior\Parallel\lab4\pic\9.jpg" style="zoom:100%">
+  <img src="https://github.com/jocelynzym/Junior/blob/master/Parallel/lab4/pic/9.jpg" style="zoom:100%">
+
 
 
 
@@ -358,7 +359,7 @@ $ jps
   $ jar -cvf ./WordCount.jar -C ./classes  .
   ```
 
-  <img src="G:\github\Junior\Parallel\lab4\pic\10.jpg" style="zoom:100%">
+  <img src="https://github.com/jocelynzym/Junior/blob/master/Parallel/lab4/pic/10.jpg" style="zoom:100%">
 
 **3.运行Hadoop作业**
 
@@ -368,7 +369,7 @@ $ hadoop jar ~/wordcount/WordCount.jar WordCount /user/joce/wordcount/input   /u
 $ hadoop fs -rmr /user/joce/wordcount/output
 ```
 
-<img src="G:\github\Junior\Parallel\lab4\pic\11.jpg" style="zoom:100%">
+<img src="https://github.com/jocelynzym/Junior/blob/master/Parallel/lab4/pic/11.jpg" style="zoom:100%">
 
 **4.获得运行结果**
 
@@ -379,7 +380,7 @@ $ hadoop fs -get /user/joce/wordcount/output/  ./
 $ cat output/part-r-00000
 ```
 
-<img src="G:\github\Junior\Parallel\lab4\pic\12.jpg" style="zoom:50%">
+<img src="https://github.com/jocelynzym/Junior/blob/master/Parallel/lab4/pic/12.jpg" style="zoom:50%">
 
 **5.关闭hadoop集群**
 
@@ -387,7 +388,7 @@ $ cat output/part-r-00000
 $ stop-all.sh 
 ```
 
-<img src="G:\github\Junior\Parallel\lab4\pic\13.jpg" style="zoom:100%">
+<img src="https://github.com/jocelynzym/Junior/blob/master/Parallel/lab4/pic/13.jpg" style="zoom:100%">
 
 
 
@@ -420,9 +421,9 @@ $ stop-all.sh
 
 - 实验结果
 
-  <img src="G:\github\Junior\Parallel\lab4\pic\14.jpg" style="zoom:100%">
+  <img src="https://github.com/jocelynzym/Junior/blob/master/Parallel/lab4/pic/14.jpg" style="zoom:100%">
 
-<img src="G:\github\Junior\Parallel\lab4\pic\15.jpg" style="zoom:84%">
+<img src="https://github.com/jocelynzym/Junior/blob/master/Parallel/lab4/pic/15.jpg" style="zoom:84%">
 
 
 
