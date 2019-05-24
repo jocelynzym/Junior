@@ -112,24 +112,24 @@ cmd进入`D:\vivado\lab3\3_CacheLab\CacheSrcCode` 目录
 输入命令`python .\generate_cache_tb.py 32 > cache_tb.sv `命令获取测试文件。以下测试中使用读写规模N=32。
 
 - FIFO
-
+https://github.com/jocelynzym/Junior/blob/master/CA/lab3/pic/1.png
   `组相联度=3`
 
-  <img src="G:\github\Junior\CA\lab3\pic\1.png" style="zoom:50%">
+  <img src="https://github.com/jocelynzym/Junior/blob/master/CA/lab3/pic/1.png" style="zoom:50%">
 
   `组相联度=5`
 
-  <img src="G:\github\Junior\CA\lab3\pic\2.png" style="zoom:45%">
+  <img src="https://github.com/jocelynzym/Junior/blob/master/CA/lab3/pic/2.png" style="zoom:45%">
 
 - LRU
 
   `组相联度=3`
 
-  <img src="G:\github\Junior\CA\lab3\pic\3.png" style="zoom:53%">
+  <img src="https://github.com/jocelynzym/Junior/blob/master/CA/lab3/pic/3.png" style="zoom:53%">
 
   `组相联度=5`
 
-  <img src="G:\github\Junior\CA\lab3\pic\4.png" style="zoom:53%">
+  <img src="https://github.com/jocelynzym/Junior/blob/master/CA/lab3/pic/4.png" style="zoom:53%">
 
 
 
@@ -149,7 +149,7 @@ cmd进入`D:\vivado\lab3\3_CacheLab\CacheSrcCode` 目录
 
 - 在 vivado 工程中开始仿真。波形运行一段时间后，会发现 mem.sv 中原本乱序的数组变有 序了（从小到大排列），说明快速排序运行成功
 
-  <img src="G:\github\Junior\CA\lab3\pic\5.png" style="zoom:53%">
+  <img src=https://github.com/jocelynzym/Junior/blob/master/CA/lab3/pic/5.png" style="zoom:53%">
 
 **2.测试矩阵乘法**
 
@@ -161,7 +161,7 @@ cmd进入`D:\vivado\lab3\3_CacheLab\CacheSrcCode` 目录
 
 - 在 vivado 工程中开始仿真。仿真后查看波形图中，mem.sv 中的 ram_cell 变量，是否与注释中相同。如果相同说明运行正确。 
 
-  <img src="G:\github\Junior\CA\lab3\pic\6.png" style="zoom:53%">
+  <img src="https://github.com/jocelynzym/Junior/blob/master/CA/lab3/pic/6.png" style="zoom:53%">
 
 #### 阶段三 评估cache性能和占用资源
 
@@ -302,21 +302,21 @@ cmd进入`D:\vivado\lab3\3_CacheLab\CacheSrcCode` 目录
 
 - 资源报告
 
-<img src="G:\github\Junior\CA\lab3\pic\7.png" style="zoom:53%">
+<img src="https://github.com/jocelynzym/Junior/blob/master/CA/lab3/pic/7.png" style="zoom:53%">
 
 - 缺失率统计
 
-  <img src="G:\github\Junior\CA\lab3\pic\8.png" style="zoom:50%">
+  <img src="https://github.com/jocelynzym/Junior/blob/master/CA/lab3/pic/8.png" style="zoom:50%">
 
 **2.矩阵乘法组别1**
 
 - 资源报告
 
-<img src="G:\github\Junior\CA\lab3\pic\9.png" style="zoom:53%">
+<img src="https://github.com/jocelynzym/Junior/blob/master/CA/lab3/pic/9.png" style="zoom:53%">
 
 - 缺失率统计
 
-<img src="G:\github\Junior\CA\lab3\pic\10.png" style="zoom:60%">
+<img src="https://github.com/jocelynzym/Junior/blob/master/CA/lab3/pic/10.png" style="zoom:60%">
 
 
 
