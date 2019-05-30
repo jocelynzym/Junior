@@ -112,24 +112,23 @@ cmd进入`D:\vivado\lab3\3_CacheLab\CacheSrcCode` 目录
 输入命令`python .\generate_cache_tb.py 32 > cache_tb.sv `命令获取测试文件。以下测试中使用读写规模N=32。
 
 - FIFO
-
   `组相联度=3`
 
-  <img src="G:\github\Junior\CA\lab3\pic\1.png" style="zoom:50%">
+  <div align=center><img src="https://github.com/jocelynzym/Junior/blob/master/CA/lab3/pic/1.png" style="zoom:50%"></div>
 
   `组相联度=5`
 
-  <img src="G:\github\Junior\CA\lab3\pic\2.png" style="zoom:45%">
+  <div align=center><img src="https://github.com/jocelynzym/Junior/blob/master/CA/lab3/pic/2.png" style="zoom:45%"></div>
 
 - LRU
 
   `组相联度=3`
 
-  <img src="G:\github\Junior\CA\lab3\pic\3.png" style="zoom:53%">
+  <div align=center><img src="https://github.com/jocelynzym/Junior/blob/master/CA/lab3/pic/3.png" style="zoom:53%"></div>
 
   `组相联度=5`
 
-  <img src="G:\github\Junior\CA\lab3\pic\4.png" style="zoom:53%">
+  <div align=center><img src="https://github.com/jocelynzym/Junior/blob/master/CA/lab3/pic/4.png" style="zoom:53%"></div>
 
 
 
@@ -149,7 +148,7 @@ cmd进入`D:\vivado\lab3\3_CacheLab\CacheSrcCode` 目录
 
 - 在 vivado 工程中开始仿真。波形运行一段时间后，会发现 mem.sv 中原本乱序的数组变有 序了（从小到大排列），说明快速排序运行成功
 
-  <img src="G:\github\Junior\CA\lab3\pic\5.png" style="zoom:53%">
+  <div align=center><img src="https://github.com/jocelynzym/Junior/blob/master/CA/lab3/pic/5.png" style="zoom:53%"></div>
 
 **2.测试矩阵乘法**
 
@@ -161,7 +160,7 @@ cmd进入`D:\vivado\lab3\3_CacheLab\CacheSrcCode` 目录
 
 - 在 vivado 工程中开始仿真。仿真后查看波形图中，mem.sv 中的 ram_cell 变量，是否与注释中相同。如果相同说明运行正确。 
 
-  <img src="G:\github\Junior\CA\lab3\pic\6.png" style="zoom:53%">
+  <div align=center><img src="https://github.com/jocelynzym/Junior/blob/master/CA/lab3/pic/6.png" style="zoom:53%"></div>
 
 #### 阶段三 评估cache性能和占用资源
 
@@ -195,13 +194,13 @@ cmd进入`D:\vivado\lab3\3_CacheLab\CacheSrcCode` 目录
 
 - **对于LRU策略 (组别1~13)**
 
-  综合性能和消耗，选取一个折中的方案：组别1~4中组别2最优,故确定line大小为3。组别5~8中组别6最优,故确定组数为3。组别9~13中组别12最优,故确定组相联度为6。
+  综合性能和消耗，选取一个折中的方案：组别1-4中组别2最优,故确定line大小为3。组别5-8中组别6最优,故确定组数为3。组别9-13中组别12最优,故确定组相联度为6。
 
   故对于LRU策略，一个较优的cache参数设定为(line大小=3，组数=3，相联度=6), 此时命中率为98.08%，资源占用为LUT(E1)=2467, FF(E2)=5464
 
 - **对于FIFO策略 (组别14~25)**
 
-  -综合性能和消耗，选取一个折中的方案：组别14~17中组别15最优,故确定line大小为3。组别18~21中组别20最优,故确定组数为4。组别22~25中组别24最优,故确定组相联度为3。
+  -综合性能和消耗，选取一个折中的方案：组别14-17中组别15最优,故确定line大小为3。组别18-21中组别20最优,故确定组数为4。组别22-25中组别24最优,故确定组相联度为3。
 
   -故对于FIFO策略，一个较优的cache参数设定为(line大小=3，组数=4，相联度=3), 此时命中率为99.25%，资源占用为LUT(E1)=1859, FF(E2)=5169
 
@@ -241,13 +240,13 @@ cmd进入`D:\vivado\lab3\3_CacheLab\CacheSrcCode` 目录
 
 - **对于LRU策略 (组别1~13)**
 
-  综合性能和消耗，选取一个折中的方案：组别1~4中组别3最优,故确定line大小为4。组别5~7中组别6最优,故确定组数为3。组别8~13中组别9最优,故确定组相联度为3。
+  综合性能和消耗，选取一个折中的方案：组别1-4中组别3最优,故确定line大小为4。组别5-7中组别6最优,故确定组数为3。组别8-13中组别9最优,故确定组相联度为3。
 
   故对于LRU策略，一个较优的cache参数设定为(line大小=4，组数=3，相联度=3), 此时命中率为86.16%，资源占用为LUT(E1)=4404, FF(E2)=10312
 
 - **对于FIFO策略 (组别14~25)**
 
-  综合性能和消耗，选取一个折中的方案：组别14~17中组别16最优,故确定line大小为4。组别18~20中组别19最优,故确定组数为3。组别21~25中组别24最优,故确定组相联度为5。
+  综合性能和消耗，选取一个折中的方案：组别14-17中组别16最优,故确定line大小为4。组别18-20中组别19最优,故确定组数为3。组别21-25中组别24最优,故确定组相联度为5。
 
   对于FIFO策略，一个较优的cache参数设定为(line大小=4，组数=3，相联度=5), 此时命中率为99.27%，资源占用为LUT(E1)=2065, FF(E2)=5870
 
@@ -302,21 +301,21 @@ cmd进入`D:\vivado\lab3\3_CacheLab\CacheSrcCode` 目录
 
 - 资源报告
 
-<img src="G:\github\Junior\CA\lab3\pic\7.png" style="zoom:53%">
+<div align=center><img src="https://github.com/jocelynzym/Junior/blob/master/CA/lab3/pic/7.png" style="zoom:53%"></div>
 
 - 缺失率统计
 
-  <img src="G:\github\Junior\CA\lab3\pic\8.png" style="zoom:50%">
+ <div align=center><img src="https://github.com/jocelynzym/Junior/blob/master/CA/lab3/pic/8.png" style="zoom:50%"></div>
 
 **2.矩阵乘法组别1**
 
 - 资源报告
 
-<img src="G:\github\Junior\CA\lab3\pic\9.png" style="zoom:53%">
+<div align=center><img src="https://github.com/jocelynzym/Junior/blob/master/CA/lab3/pic/9.png" style="zoom:53%"></div>
 
 - 缺失率统计
 
-<img src="G:\github\Junior\CA\lab3\pic\10.png" style="zoom:60%">
+<div align=center><img src="https://github.com/jocelynzym/Junior/blob/master/CA/lab3/pic/10.png" style="zoom:60%"></div>
 
 
 
