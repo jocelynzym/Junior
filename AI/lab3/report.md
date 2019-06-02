@@ -162,6 +162,7 @@
   $$
 
 
+
 本项目中以RMSE为标准进行评测
 
 
@@ -178,8 +179,15 @@ User-Based协同过滤原理: 如果用户A和用户B对一些项的评分相似
 
 **1.算法说明**
 
-- 构建相似性矩阵(user_num X user_num)
-- 最近邻搜索，使用余弦相似性
+- 使用基于baseline的KNN
+
+- <img src="G:\github\Junior\AI\lab3\pic\1.png" style="zoom:60%">
+
+- 本课设中k取全体邻居
+
+- 相似性度量:余弦相似度
+
+  <img src="G:\github\Junior\AI\lab3\pic\2.png" style="zoom:60%">
 
 **2.评测结果**
 
@@ -193,8 +201,9 @@ User-Based协同过滤原理: 如果用户A和用户B对一些项的评分相似
 
 **1.算法说明**
 
-- 构建相似性矩阵(item_num X item_num)
-- 最近邻搜索，使用余弦相似性
+- 使用朴素KNN
+- <img src="G:\github\Junior\AI\lab3\pic\3.png" style="zoom:60%">
+- 本课设中k取全体邻居
 
 **2.评测结果**
 
@@ -216,6 +225,10 @@ User-Based协同过滤原理: 如果用户A和用户B对一些项的评分相似
 - 相似度评价添加职业
 - 相似度评价添加电影类型
 - 相似度评价添加电影年份
+
+
+
+
 
 
 
@@ -273,11 +286,11 @@ User-Based协同过滤原理: 如果用户A和用户B对一些项的评分相似
 
 #### 5.2 基于矩阵分解
 
+**1.算法说明**
 
+<img src="G:\github\Junior\AI\lab3\pic\4.png" style="zoom:50%">
 
-
-
-
+2.
 
 
 
