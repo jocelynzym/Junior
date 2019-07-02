@@ -21,11 +21,4 @@
 
   【数据库】		Database
 
-  【软件工程】		Software
-
   【信息安全导论】	infoSec
-
-
-
-
-
