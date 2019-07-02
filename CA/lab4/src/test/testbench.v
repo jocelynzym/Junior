@@ -13,8 +13,8 @@
 // !!! ALL YOU NEED TO CHANGE IS 4 FILE PATH BELOW !!!	
 //				(they are all optional, you can run cpu without change paths here,if files are failed to open, we will not dump the content to .txt and will not try to initial your bram)
 //////////////////////////////////////////////////////////////////////////////////
-`define DataRamContentLoadPath "D:\\vivado\\lab4\\6_branch_prediction\\test\\bht.data"
-`define InstRamContentLoadPath "D:\\vivado\\lab4\\6_branch_prediction\\test\\bht.inst"
+`define DataRamContentLoadPath "D:\\vivado\\lab4\\6_branch_prediction\\test\\btb.data"
+`define InstRamContentLoadPath "D:\\vivado\\lab4\\6_branch_prediction\\test\\btb.inst"
 `define DataRamContentSavePath "D:\\vivado\\lab4\\6_branch_prediction\\test\\DataRamContent.txt"
 `define InstRamContentSavePath "D:\\vivado\\lab4\\6_branch_prediction\\test\\InstRamContent.txt"
 `define BRAMWORDS 4096  //a word is 32bit, so our bram is 4096*32bit

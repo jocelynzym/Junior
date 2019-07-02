@@ -1,7 +1,5 @@
 ## 电影评分预测
 
-
-
 ### 一.任务说明
 
 ****
@@ -143,8 +141,6 @@
   - War
   - Western
 
-
-
 ### 三.评测标准说明
 
 ****
@@ -163,9 +159,11 @@
 
 
 
+
+
+
+
 本项目中以RMSE为标准进行评测
-
-
 
 ### 四.基于领域协同过滤
 
@@ -259,23 +257,15 @@ User-Based协同过滤原理: 如果用户A和用户B对一些项的评分相似
 - movies_orig：没有做数据处理的原始电影数据
 - users_orig：没有做数据处理的原始用户数据
 
-**2.算法说明**
-
-- 用户特征提取: 由`user_id`,`gender`,`age`,`occupation`提取得到(N,200)的矩阵，表示用户特征
-- 电影特征提取:由`item_id`,`genre`提取得到(N,200)的矩阵，表示电影特征
-- 预测评分: 得到用户特征和电影特征后，使用拟合评分
+**2.算法说明
 
 **3.评测结果**
 
 
 
- 
+ ![1559658716385](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1559658716385.png)
 
-**4.改进方案**
-
-- 
-
-**5.总结**
+**4.总结**
 
 - CNN已经成为众多科学领域的研究热点之一，特别是在模式分类领域，由于该网络避免了对图像的复杂前期预处理，可以直接输入原始图像，因而得到了更为广泛的应用
 
@@ -286,37 +276,64 @@ User-Based协同过滤原理: 如果用户A和用户B对一些项的评分相似
 
 #### 5.2 基于矩阵分解
 
-**1.算法说明**
+基于模型的协同过滤技术中尤为矩阵分解(MF)技术最为普遍和流行，因为它的可扩展性极好并且易于实现。原理是通过一定数量的因子来描述各个用户的喜好和各个物品的属性。
 
-<img src="G:\github\Junior\AI\lab3\pic\4.png" style="zoom:50%">
+**1.算法介绍**
 
-2.
+- 构建用户-物品的评分矩阵R<sub>m,n</sub>
 
+- 对R作矩阵分解R<sub>m,n</sub> = P<sub>m,k</sub> X  Q<sub>k,n</sub> ,k为待调节的参数, 通常为10-100
 
+- 定义损失函数，评价分解的好坏
 
-### 六.总结
+- 确定优化算法, 比如梯度下降。迭代计算得到P,Q矩阵
 
-
-
-
-
-
-
-
-
+- 得到预测值 P
+  $$
+  P_{ui}=\sum_{k} P_{uk}*P_{ki}
+  $$
 
 
 
+**2.实现说明**
+
+- 数据预处理得到(user_id, movie_id, rating)三元组, 构建2个评分矩阵(训练和测试), 行号为user_id, 列号为movie_id, 矩阵内容为评分数值。并进行规范化, 算出均值, 评分在原评分基础上减去均值 
+- 设定维度k=10，随机初始化矩阵P 和 Q
+- 调用tensorflow的`optimizer = tf.train.AdamOptimizer()` 优化方法，迭代3000次得到收敛结果
+- 得到预测值并进行评估
+
+**3.总结**
+
+- 矩阵分解可扩展性好, 可与其他算法做结合
+- 矩阵分解是协同过滤模型中经典的方法，性能十分优良。但存在数据稀疏与冷启动问题。结合外部丰富的信息可以缓解上述问题
+
+**4.评测结果**
+
+<img src="G:\github\Junior\AI\lab3\pic\7.png" style="zoom:60%">
 
 
 
-****
+### 六.扩展
+
+------
+
+- [16年一篇文章](https://wenku.baidu.com/view/d332187db4daa58da0114a66.html)将矩阵分解(MF)与卷积神经网络(CNN)做了结合
+
+| 算法       | RMSE |
+| ---------- | ---- |
+| user-based | 3.35 |
+| item-based | 3.53 |
+| CNN        | 0.87 |
+| MF         | 0.80 |
+
+
+
+------
 
 【ref】
 
-- [MovieLens数据集分析](https://www.cnblogs.com/muchen/p/6881823.html)
-- [推荐系统评价指标](https://wenku.baidu.com/view/c9aea79668dc5022aaea998fcc22bcd126ff422b.html)
-- [基于梯度下降的协同过滤](https://blog.csdn.net/zhq9695/article/details/83025632
-  )
-- [基于模型的协同过滤](https://www.cnblogs.com/chenliyang/p/6548306.html)
-- [较详细的参考](http://python.jobbole.com/85516/)
+- [基于用户/项目的协同过滤](https://wenku.baidu.com/view/d332187db4daa58da0114a66.html)
+- [卷积神经网络](https://www.cnblogs.com/skyfsm/p/6790245.html)
+- [基于矩阵分解的推荐系统](https://www.cnblogs.com/kobedeshow/p/3651833.html)
+
+

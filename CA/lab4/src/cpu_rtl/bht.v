@@ -1,4 +1,4 @@
-module btb #(
+module bht #(
     parameter ENTRY_LEN = 6    // BTB条目长度
 )(
     input               clk,
@@ -11,7 +11,7 @@ module btb #(
     output  reg [31:0]  PredictedPC,    // 预测结果
     output  reg         PredictedF      // 预测结果有效
 );
-// 分支指令操作码
+// 分支指令操作�?
 localparam BR_OP    = 7'b110_0011;
 //BTB条目数量
 localparam ENTRY_NUM = 1 << ENTRY_LEN;
@@ -24,8 +24,8 @@ reg [1:0]   State[ ENTRY_NUM - 1 : 0 ];
 
 
 //根据PC确定索引
-wire [ENTRY_NUM-1:0] PCF_Tag=PCF[ENTRY_NUM+1:2];
-wire [ENTRY_NUM-1:0] PCE_Tag=PCE[ENTRY_NUM+1:2];
+wire [ENTRY_LEN-1:0] PCF_Tag=PCF[ENTRY_LEN+1:2];
+wire [ENTRY_LEN-1:0] PCE_Tag=PCE[ENTRY_LEN+1:2];
 
 
 //组合逻辑产生预测跳转地址
@@ -50,12 +50,12 @@ always @(posedge clk or posedge rst) begin
             BranchTargeAddress[i]   <= 32'd0;
         end
     end 
-	else if(OpE == BR_OP) begin //如果是分支指令,更新结果
+	else if(OpE == BR_OP) begin //如果是分支指�?,更新结果
 		BranchInstrAddress[PCE_Tag]   <= PCE;
         BranchTargeAddress[PCE_Tag]   <= BrNPC;
 		//实际taken
 		if(BranchE)begin
-			case(State_Buff[PCE_Tag])
+			case(State[PCE_Tag])
 					2'b00:State[PCE_Tag]<=2'b01;
 					2'b01:State[PCE_Tag]<=2'b11;
 					2'b10:State[PCE_Tag]<=2'b11;
@@ -65,7 +65,7 @@ always @(posedge clk or posedge rst) begin
 		end
 		//实际not taken
 		if(!BranchE)begin
-			case(State_Buff[PCE_Tag])
+			case(State[PCE_Tag])
 					2'b00:State[PCE_Tag]<=2'b00;
 					2'b01:State[PCE_Tag]<=2'b00;
 					2'b10:State[PCE_Tag]<=2'b00;

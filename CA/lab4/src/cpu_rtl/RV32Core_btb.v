@@ -101,6 +101,14 @@ module RV32Core(
     assign ResultM = LoadNpcM ? (PCM+4) : AluOutM;
     assign RegWriteData = ~MemToRegW?ResultW:DM_RD_Ext;
 
+
+     reg [16:0] counter;
+    always@(posedge CPU_CLK) begin
+        if(CPU_RST) 
+            counter<= 0;
+        else
+            counter<=counter+1;
+    end
     //Module connections
     // ---------------------------------------------
     // PC-IF
@@ -373,6 +381,8 @@ module RV32Core(
         .OpE(OpE),
         .PredictedPC(PredictedPC),
         .PredictedF(PredictedF)
+         // .NPC_PredF(PredictedPC),
+         // .PredF(PredictedF)
     );
 		
 //end:--------------------------------
